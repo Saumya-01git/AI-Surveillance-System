@@ -21,5 +21,5 @@ This project is a real-time surveillance system that detects human activity and 
 - OpenCV
 
 4). How to Run
-pip install ultralytics opencv-python
-python your_file_name.py
+- pip install ultralytics opencv-python
+- python your_file_name.py
