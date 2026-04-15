@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Analytics Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>🚨 Safety AI Surveillance</h2>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/alerts">Alerts</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+
+    <h1 class="page-title">📊 Surveillance Analytics</h1>
+    <p class="subtitle">AI-driven threat pattern analysis & zone intelligence</p>
+
+    <!-- LOCATION ANALYTICS -->
+    <div class="analytics-card">
+        <h3>📍 Most Dangerous Locations</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Location</th>
+                    <th>Total Alerts</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in location_data %}
+                <tr>
+                    <td>{{ row.location }}</td>
+                    <td>{{ row.total }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- EVENT ANALYTICS -->
+    <div class="analytics-card">
+        <h3>⚠ Most Frequent Suspicious Events</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Occurrences</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in event_data %}
+                <tr>
+                    <td>{{ row.event_name }}</td>
+                    <td>{{ row.total }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- THREAT LEVEL ANALYTICS -->
+    <div class="analytics-card">
+        <h3>🔥 Threat Level Distribution</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Threat Level</th>
+                    <th>Total Alerts</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in threat_data %}
+                <tr>
+                    <td>
+                        {% if row.threat_level == 'HIGH' %}
+                            🔴 HIGH
+                        {% elif row.threat_level == 'MEDIUM' %}
+                            🟠 MEDIUM
+                        {% else %}
+                            🟢 LOW
+                        {% endif %}
+                    </td>
+                    <td>{{ row.total }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- PERSON ANALYTICS -->
+    <div class="analytics-card">
+        <h3>👤 Top High-Risk Individuals</h3>
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Track ID</th>
+                    <th>Max Risk Score</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for row in person_data %}
+                <tr>
+                    <td>{{ row.track_id }}</td>
+                    <td>{{ row.max_risk }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Alert Records</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>🚨 Safety AI Surveillance System</h2>
+    <div class="nav-links">
+        <a href="/dashboard">Dashboard</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<div class="container">
+    <h1 class="page-title">Alert Records</h1>
+    <p class="subtitle">Real-time threat monitoring and response management</p>
+
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>Alert ID</th>
+                <th>Timestamp</th>
+                <th>Location</th>
+                <th>Track ID</th>
+                <th>Event</th>
+                <th>Risk Score</th>
+                <th>Threat Level</th>
+                <th>Status</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+
+        <tbody>
+        {% for row in alerts %}
+            <tr>
+                <td>{{ row[0] }}</td>
+                <td>{{ row[1] }}</td>
+                <td>{{ row[2] }}</td>
+                <td>{{ row[3] }}</td>
+
+                <td>
+                    <span class="event-badge">{{ row[4] }}</span>
+                </td>
+
+                <td>
+                    <span class="risk-badge">{{ row[5] }}</span>
+                </td>
+
+                <!-- THREAT LEVEL COLUMN -->
+                <td>
+                    {% if row[6] == "HIGH" %}
+                        <span style="color: rgb(164, 0, 0); font-weight: bold;">HIGH</span>
+                    {% elif row[6] == "MEDIUM" %}
+                        <span style="color: rgb(215, 88, 19); font-weight: bold;">MEDIUM</span>
+                    {% else %}
+                        <span style="color: rgb(242, 207, 6); font-weight: bold;">LOW</span>
+                    {% endif %}
+                </td>
+
+                <!-- STATUS COLUMN (index shifted to row[7]) -->
+                <td>
+                    {% if row[7] == "Pending" %}
+                        <span class="status pending">Pending</span>
+                    {% elif row[7] == "Escalated" %}
+                        <span class="status escalated">Escalated</span>
+                    {% else %}
+                        <span class="status reviewed">Reviewed</span>
+                    {% endif %}
+                </td>
+
+                <td>
+                    <a class="btn review" href="/update/{{ row[0] }}/Reviewed">✔ Review</a>
+                    <a class="btn escalate" href="/update/{{ row[0] }}/Escalated">⚠ Escalate</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

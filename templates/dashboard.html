@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Safety AI Surveillance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<nav class="navbar">
+    <h2>🚨 Safety AI Surveillance</h2>
+    <div class="nav-links">
+        <a href="/alerts">Alerts</a>
+        <a href="/analytics">Analytics</a>
+        <a href="/logout">Logout</a>
+    </div>
+</nav>
+
+<section class="hero">
+    <h1>AI Powered Public Safety Control Center</h1>
+    <p>Real-Time Risk Monitoring & Threat Intelligence Dashboard</p>
+</section>
+
+<div class="stats-container">
+
+    <!-- TOTAL ALERTS -->
+    <div class="stat-box total">
+        <h3>Total Alerts</h3>
+        <p class="total-number">{{ total }}</p>
+    </div>
+
+    <!-- PENDING ALERTS -->
+    <div class="stat-box pending">
+        <h3>Pending Alerts</h3>
+        <p class="pending-number">{{ pending }}</p>
+    </div>
+
+    <!-- MEDIUM THREAT ALERTS -->
+    <div class="stat-box medium">
+        <h3>Medium Threat Alerts</h3>
+        <p class="medium-number">{{ medium_threats }}</p>
+    </div>
+
+    <!-- HIGH THREAT ALERTS -->
+    <div class="stat-box high">
+        <h3>High Threat Alerts</h3>
+        <p class="high-number">{{ high_threats }}</p>
+    </div>
+
+</div>
+
+<div class="detection-box">
+    <h3>🎥 Start Smart Detection</h3>
+    <p>Select environment and simulate AI anomaly detection.</p>
+
+    <form action="/start" method="POST">
+        <select name="environment">
+            <option value="Railway Station">🚉Railway Station</option>
+            <option value="Shopping Mall">🏬 Shopping Mall</option>
+            <option value="Airport">✈ Airport</option>
+        </select>
+
+        <select name="video">
+            <option value="crowd.mp4">👥 Crowd Monitoring</option>
+            <option valuetight value="theft.mp4">👜 Theft Detection</option>
+            <option value="run.mp4">🏃 Suspicious Running</option>
+            <option value="loiter.mp4">⏳ Loitering Detection</option>
+        </select>
+
+        <button type="submit">🚀 Launch AI Detection</button>
+    </form>
+</div>
+
+</body>
+</html>
