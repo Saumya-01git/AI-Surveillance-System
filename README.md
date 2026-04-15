@@ -129,13 +129,4 @@ VIT Chennai
 
 ---
 
-# 🔥 FINAL CHECK (VERY IMPORTANT)
 
-Before submitting:
-
-✅ Repo has clean files
-✅ README pasted
-✅ Repo is **Public**
-✅ GitHub link added in resume
-
----
